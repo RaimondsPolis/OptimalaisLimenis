@@ -1,0 +1,5 @@
+input("Mani sauc: ")
+input("Man patīk: ")
+input("My favourite holiday is: ")
+input("Mans dzimums ir: ")
+input("nēģerus vajag: ")
