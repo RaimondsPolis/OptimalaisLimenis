@@ -1,5 +1,4 @@
-print("ievadi preces cenu: ")
-PreceArPVN = int (input())
+PreceArPVN = int (input("ievadi preces cenu: "))
 PreceBezPVN = int (PreceArPVN)-(int (PreceArPVN) *(21/100))
 PVN = int (PreceArPVN)*(21/100)
 print(PreceBezPVN)
