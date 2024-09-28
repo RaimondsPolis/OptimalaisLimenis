@@ -87,3 +87,70 @@ def Divides():
             i = i + N
         N +=1
     print(i)
+
+def fibonacci():
+    maxnumber = int(input("Ievadi ciparu: "))
+
+    x=0
+    y=0
+    r=0
+    a=1
+    b=2
+    list = [1,2]
+
+    while y<1:
+        if a<b:
+            a += b
+            x=a
+            list.append(x)
+            if maxnumber<x:
+                y=1
+                a = a - b
+            
+        elif b<a:
+            b += a
+            x=b
+            list.append(x)
+            if maxnumber<x:
+                y=1
+                b = b - a
+        
+    for i in range(len(list)):
+        if list[i]%2 == 0:
+            r += list[i]
+
+    print(a)
+    print(b)
+    print(list)
+    print(r)
+
+def Combinations():
+    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    list = []
+    for i in alphabet:
+        list.append(i)
+
+    for a in alphabet:
+        for b in alphabet:
+            print(f"{a}{b}")
+
+def TwoToThe_N_Power():
+    number = int(input("ievadi skaitli: "))
+    a = 2
+    for i in range(1, number):
+        a *= 2
+    print(a)
+
+
+preceUnPVN()
+pastastiParSevi()
+Pilngadiba()
+movement()
+thousand()
+repetition()
+uzminiskaitli()
+lettercount()
+Divides()
+fibonacci()
+Combinations()
+TwoToThe_N_Power()
