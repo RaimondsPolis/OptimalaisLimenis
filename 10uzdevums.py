@@ -28,10 +28,6 @@ for i in range(len(list)):
     if list[i]%2 == 0:
         r += list[i]
 
-
-    
-
-
 print(a)
 print(b)
 print(list)
