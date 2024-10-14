@@ -1,34 +1,113 @@
-alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-list = []
-for i in alphabet:
-    list.append(i)
+import random
 
-vardu_saraksts = ["BANANA","ELEPHANT","NIGGER","HITLER","PROGRAMMING"]
+def get_random_word():
+    words = ['alus', 'ugunskurs', 'latvija', 'burgers', 'programmesana', 'karatavas', 'skola']
+    return random.choice(words)
 
-num = int(input("Izvēlies skaitli no 0  - 4 (ieskaitot)"))
-n = 0
+def display_word(vards, minetieBurti):
+    return ' '.join([burts if burts in minetieBurti else '_' for burts in vards])
 
+def display_hangman(attempts):
+    stages = [
+        """
+            +---+
+            |   |
+            O   |
+           /|\  |
+           / \  |
+                |
+        =========
 
-name = vardu_saraksts[num]
-hidden_word = []
-for i in name:
-    hidden_word.append("_ ")
+        """,
+        """
+           +---+
+           |   |
+           O   |
+          /|\  |
+          /    |
+               |
+        ========
+        """,
+        """
+           +---+
+           |   |
+           O   |
+          /|\  |
+               |
+               |
+        ========
+        """,
+        """
+           +---+
+           |   |
+           O   |
+          /|   |
+               |
+               |
+        ========
+        """,
+        """
+           +---+
+           |   |
+           O   |
+           |   |
+               |
+               |
+        ========
+        """,
+        """
+           +---+
+           |   |
+           O   |
+               |
+               |
+               |
+        ========
+        """,
+        """
+           +---+
+           |   |
+               |
+               |
+               |
+               |
+        ========
+        """
+    ]
+    return stages[attempts]
 
-true = True
-while true:
-    guess = input("Sāc minēt! ")
-    for i in name:
-        for j in list:
-            if guess[0] == list[j]:
-                hidden_word[i] = list[j]
+def spelet():
+    vards = get_random_word()
+    minetieBurti = []
+    attempts = 6
+    print("SVEICINĀTS ELLĒ!!! MUHAHAHAHAHAHAHAHHAHAHAAA")
+
+    while attempts > 0:
+        print(display_hangman(attempts))
+        print(f"Mināmais vārds: {display_word(vards, minetieBurti)}")
+        print(f"Nepareizi minējumi līdz nāvei: {attempts}")
+        guess = input("Mini burtus: ").lower()
+
+        if guess in minetieBurti:
+            print("Šo burtu jau esi minējis!")
+        elif guess in vards:
+            minetieBurti.append(guess)
+        else:
+            attempts -= 1
+            minetieBurti.append(guess)
+            print(f"{guess} nav šaja vārdā ")
+
+        if all(letter in minetieBurti for letter in vards):
+            print("\n Apsveicu, nenomiri! :)")
+            print(f'pareizais vārds bija "{vards}"')
+            break  
     
+    if attempts == 6:
+        print("Woah dude, tev palaimējās, jeb tu esi filthy cheater???")
 
+    if attempts == 0:
+        print(display_hangman(attempts))
+        print(f"\n Tu nomiri! pareizais vārds bija '{vards}'.")
 
-# vards = input("Uzraksti vārdu: ")
-# burts = input("ievadi burtu: ")
-# redzets = 0
-# for i in vards:
-#     if i == burts:
-#         redzets +=1
-# print(redzets)
-
+if __name__ == "__main__":
+    spelet()
