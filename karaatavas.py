@@ -1,14 +1,14 @@
 import random
 
-def get_random_word():
+def randomVards():
     words = ['alus', 'ugunskurs', 'latvija', 'burgers', 'programmesana', 'karatavas', 'skola']
-    return random.choice(words)
+    return random.choice(words)# vajag 2 mainīgos tapēc viens ir 'word' otrs ir 'vards'
 
-def display_word(vards, minetieBurti):
+def raditVardu(vards, minetieBurti):
     return ' '.join([burts if burts in minetieBurti else '_' for burts in vards])
 
-def display_hangman(attempts):
-    stages = [
+def raditKaratavas(meginajumi):
+    stages = [ #negribeju rakstīt 'fazes', stages jūtas pareizāk :)
         """
             +---+
             |   |
@@ -74,40 +74,40 @@ def display_hangman(attempts):
         ========
         """
     ]
-    return stages[attempts]
+    return stages[meginajumi]
 
 def spelet():
-    vards = get_random_word()
+    vards = randomVards()
     minetieBurti = []
-    attempts = 6
+    meginajumi = 6
     print("SVEICINĀTS ELLĒ!!! MUHAHAHAHAHAHAHAHHAHAHAAA")
 
-    while attempts > 0:
-        print(display_hangman(attempts))
-        print(f"Mināmais vārds: {display_word(vards, minetieBurti)}")
-        print(f"Nepareizi minējumi līdz nāvei: {attempts}")
-        guess = input("Mini burtus: ").lower()
+    while meginajumi > 0:
+        print(raditKaratavas(meginajumi))
+        print(f"Mināmais vārds: {raditVardu(vards, minetieBurti)}")
+        print(f"Nepareizi minējumi līdz nāvei: {meginajumi}")
+        minejums = input("Mini burtus: ").lower()# .lower() ir lai ievadītais burts būtu lowercase
 
-        if guess in minetieBurti:
+        if minejums in minetieBurti:
             print("Šo burtu jau esi minējis!")
-        elif guess in vards:
-            minetieBurti.append(guess)
+        elif minejums in vards:
+            minetieBurti.append(minejums)
         else:
-            attempts -= 1
-            minetieBurti.append(guess)
-            print(f"{guess} nav šaja vārdā ")
+            meginajumi -= 1
+            minetieBurti.append(minejums)
+            print(f"{minejums} nav šaja vārdā ")
 
         if all(letter in minetieBurti for letter in vards):
             print("\n Apsveicu, nenomiri! :)")
             print(f'pareizais vārds bija "{vards}"')
             break  
     
-    if attempts == 6:
+    if meginajumi == 6:
         print("Woah dude, tev palaimējās, jeb tu esi filthy cheater???")
 
-    if attempts == 0:
-        print(display_hangman(attempts))
+    if meginajumi == 0:
+        print(raditKaratavas(meginajumi))
         print(f"\n Tu nomiri! pareizais vārds bija '{vards}'.")
 
-if __name__ == "__main__":
+if __name__ == "__main__": # šis bija mācīts programmēšana II pie Britālas
     spelet()
